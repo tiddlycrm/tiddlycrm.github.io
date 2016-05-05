@@ -43,7 +43,7 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 DAMAGE.
 " />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>TiddlyCRM — $:/Import</title>
+<title>TiddlyCRM — Murray McClay</title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--><!--~~ Raw markup ~~-->
 
 </head>
@@ -4341,7 +4341,7 @@ TiddlyCRM is also useful for managing your personal relationships. When did you 
 <div created="20160403083304551" icon="$:/_Icon/recycle" modified="20160429094601653" tags="TiddlyCRM-Core" title="$:/_Temp/Organisation">
 <pre></pre>
 </div>
-<div created="20160403214533605" employer="Amelia Computer Company, Limited" firstname="John" gender="Male" icon="$:/_Icon/recycle" modified="20160429094619760" surname="Adams" tags="TiddlyCRM-Core" title="$:/_Temp/Person">
+<div created="20160403214533605" employer="Newton Travel Company (1992), Limited" firstname="Murray" gender="Male" icon="$:/_Icon/recycle" modified="20160505073604976" name_temp="" surname="McClay" tags="" title="$:/_Temp/Person">
 <pre></pre>
 </div>
 <div created="20160403083331638" icon="$:/_Icon/recycle" modified="20160429094603600" tags="TiddlyCRM-Core" title="$:/_Temp/Phone Number">
@@ -10815,7 +10815,7 @@ TiddlyCRM is also useful for managing your personal relationships. When did you 
 <div alt-caption="TiddlyCRM" created="20160324154602192" modified="20160429094458725" tags="TiddlyCRM-Core" title="$:/SiteTitle">
 <pre>&lt;center&gt;[img[https://dl.dropboxusercontent.com/s/6tn5so707ip039k/TiddlyCRM_150x175.png]]&lt;/center&gt;</pre>
 </div>
-<div list="" title="$:/StoryList">
+<div list="Home [[Add Person]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20160408122949771" list="$:/_Templates/TopBar $:/core/ui/ViewTemplate/title $:/core/ui/ViewTemplate/unfold $:/core/ui/ViewTemplate/subtitle $:/core/ui/ViewTemplate/tags $:/core/ui/ViewTemplate/classic $:/core/ui/ViewTemplate/body" modified="20160429094731126" tags="TiddlyCRM-Core" title="$:/tags/ViewTemplate">
@@ -11043,11 +11043,35 @@ TiddlyCRM is also useful for managing your personal relationships. When did you 
 <div caption="Add an Organisation..." created="20160403082117395" entity="Organisation" icon="$:/_Icon/organisation-add" modified="20160429094556007" tags="Add TiddlyCRM-Core" title="Add Organisation">
 <pre>* ''Organisation:'' &lt;$edit-text tiddler=&quot;$:/_Temp/Organisation&quot; field=&quot;neworgtitle&quot; placeholder=&quot;Type org name here...&quot; /&gt;</pre>
 </div>
-<div caption="Add a Person..." created="20160403082028920" entity="Person" icon="$:/_Icon/person-add" modified="20160429094554510" tags="Add TiddlyCRM-Core" title="Add Person">
-<pre>* ''First name:'' &lt;$edit-text tiddler=&quot;$:/_Temp/Person&quot; field=&quot;firstname&quot; placeholder=&quot;Type first name here...&quot; /&gt;
+<div caption="Add a Person..." created="20160403082028920" entity="Person" icon="$:/_Icon/person-add" modified="20160505073445191" tags="Add TiddlyCRM-Core" title="Add Person">
+<pre>\define newtitlemacro() $(firstname)$ $(surname)$
+\define newtagsmacro() Person NewData [[$(employer)$]]
+
+!! Add Contact
+
+* ''First name:'' &lt;$edit-text tiddler=&quot;$:/_Temp/Person&quot; field=&quot;firstname&quot; placeholder=&quot;Type first name here...&quot; /&gt;
 * ''Surname:'' &lt;$edit-text tiddler=&quot;$:/_Temp/Person&quot; field=&quot;surname&quot; placeholder=&quot;Type surname here...&quot; /&gt;
 * ''Gender:'' &lt;$radio  tiddler=&quot;$:/_Temp/Person&quot; field=&quot;gender&quot; value=&quot;Male&quot;&gt;Male&lt;/$radio&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;$radio  tiddler=&quot;$:/_Temp/Person&quot; field=&quot;gender&quot; value=&quot;Female&quot;&gt;Female&lt;/$radio&gt;
-* ''Employee of:'' &lt;&lt;combobox tiddler:&quot;$:/_Temp/Person&quot; field:&quot;employer&quot; placeholder:&quot;Type or select employer...&quot; filter:&quot;[tag[Organisation]]&quot;&gt;&gt;</pre>
+* ''Employee of:'' &lt;&lt;combobox tiddler:&quot;$:/_Temp/Person&quot; field:&quot;employer&quot; placeholder:&quot;Type or select employer...&quot; filter:&quot;[tag[Organisation]]&quot;&gt;&gt;
+
+
+&lt;$button&gt;Create Person
+&lt;$vars firstname={{$:/_Temp/Person!!firstname}}
+       surname={{$:/_Temp/Person!!surname}}
+       employer={{$:/_Temp/Person!!employer}} &gt;
+&lt;$action-setfield $tiddler=&lt;&lt;newtitlemacro&gt;&gt; firstname={{$:/_Temp/Person!!firstname}} surname={{$:/_Temp/Person!!surname}} gender={{$:/_Temp/Person!!gender}} tags=&lt;&lt;newtagsmacro&gt;&gt; /&gt;
+&lt;$action-navigate $to=&lt;&lt;newtitlemacro&gt;&gt; /&gt;
+&lt;/$vars&gt;
+&lt;/$button&gt;
+
+
+
+&lt;$button&gt;Clear Form
+
+&lt;$action-setfield $tiddler='$:/_Temp/Person' name_temp='' firstname='' surname='' gender='' employer='' tags=''/&gt;
+
+&lt;/$button&gt;
+</pre>
 </div>
 <div caption="Add a Phone Number..." created="20160403082208232" entity="Phone Number" icon="$:/_Icon/landline-add" modified="20160429094557741" tags="Add TiddlyCRM-Core" title="Add Phone Number">
 <pre></pre>
