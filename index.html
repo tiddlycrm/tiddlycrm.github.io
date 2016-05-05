@@ -43,7 +43,7 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 DAMAGE.
 " />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>TiddlyCRM — Amelia Johnston</title>
+<title>TiddlyCRM — Hyatt Regent </title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--><!--~~ Raw markup ~~-->
 
 </head>
@@ -4338,7 +4338,7 @@ TiddlyCRM is also useful for managing your personal relationships. When did you 
 <div created="20160403083359074" icon="$:/_Icon/recycle" modified="20160429094604384" tags="TiddlyCRM-Core" title="$:/_Temp/Email Address">
 <pre></pre>
 </div>
-<div created="20160403083304551" icon="$:/_Icon/recycle" modified="20160429094601653" tags="TiddlyCRM-Core" title="$:/_Temp/Organisation">
+<div created="20160403083304551" icon="$:/_Icon/recycle" modified="20160505083645158" name_temp="" orgtitle="" tags="" title="$:/_Temp/Organisation">
 <pre></pre>
 </div>
 <div created="20160403214533605" employer="" firstname="" gender="" icon="$:/_Icon/recycle" modified="20160505074045642" name_temp="" surname="" tags="" title="$:/_Temp/Person">
@@ -10809,7 +10809,7 @@ TiddlyCRM is also useful for managing your personal relationships. When did you 
 <div alt-caption="TiddlyCRM" created="20160324154602192" modified="20160429094458725" tags="TiddlyCRM-Core" title="$:/SiteTitle">
 <pre>&lt;center&gt;[img[https://dl.dropboxusercontent.com/s/6tn5so707ip039k/TiddlyCRM_150x175.png]]&lt;/center&gt;</pre>
 </div>
-<div list="Home [[Edit Person]]" title="$:/StoryList">
+<div list="Home [[Add Organisation]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20160408122949771" list="$:/_Templates/TopBar $:/core/ui/ViewTemplate/title $:/core/ui/ViewTemplate/unfold $:/core/ui/ViewTemplate/subtitle $:/core/ui/ViewTemplate/tags $:/core/ui/ViewTemplate/classic $:/core/ui/ViewTemplate/body" modified="20160429094731126" tags="TiddlyCRM-Core" title="$:/tags/ViewTemplate">
@@ -11034,8 +11034,25 @@ TiddlyCRM is also useful for managing your personal relationships. When did you 
 <div caption="Add an Email Address..." created="20160403082237993" entity="Email Address" icon="$:/_Icon/email-add" modified="20160429094558587" tags="Add TiddlyCRM-Core" title="Add Email Address">
 <pre></pre>
 </div>
-<div caption="Add an Organisation..." created="20160403082117395" entity="Organisation" icon="$:/_Icon/organisation-add" modified="20160429094556007" tags="Add TiddlyCRM-Core" title="Add Organisation">
-<pre>* ''Organisation:'' &lt;$edit-text tiddler=&quot;$:/_Temp/Organisation&quot; field=&quot;neworgtitle&quot; placeholder=&quot;Type org name here...&quot; /&gt;</pre>
+<div caption="Add an Organisation..." created="20160403082117395" entity="Organisation" icon="$:/_Icon/organisation-add" modified="20160505083603851" tags="Add TiddlyCRM-Core" title="Add Organisation">
+<pre>\define newtitlemacro() $(orgtitle)$ 
+\define newtagsmacro() Organisation NewData
+
+!! Add Organisation
+* ''Organisation Name:'' &lt;$edit-text tiddler=&quot;$:/_Temp/Organisation&quot; field=&quot;orgtitle&quot; placeholder=&quot;Type name here...&quot; /&gt;
+
+&lt;$button&gt;Create Organisation
+&lt;$vars orgtitle={{$:/_Temp/Organisation!!orgtitle}}&gt;
+&lt;$action-setfield $tiddler=&lt;&lt;newtitlemacro&gt;&gt; orgtitle={{$:/_Temp/Organisation!!orgtitle}} tags=&lt;&lt;newtagsmacro&gt;&gt; /&gt;
+&lt;$action-navigate $to=&lt;&lt;newtitlemacro&gt;&gt; /&gt;
+&lt;/$vars&gt;
+&lt;/$button&gt;
+
+&lt;$button&gt;Clear Form
+
+&lt;$action-setfield $tiddler='$:/_Temp/Organisation' name_temp='' orgtitle='' tags='' /&gt;
+
+&lt;/$button&gt;</pre>
 </div>
 <div caption="Add a Person..." created="20160403082028920" entity="Person" icon="$:/_Icon/person-add" modified="20160505073445191" tags="Add TiddlyCRM-Core" title="Add Person">
 <pre>\define newtitlemacro() $(firstname)$ $(surname)$
